@@ -31,3 +31,10 @@ This library targets the case where you want the standard data structure with no
 - **Item type.** Only `bytes` and `bytearray` are accepted. Passing `str` raises `TypeError`. This is deliberate: silent encoding coercion has caused real bugs.
 - **`bool` capacity.** `BloomFilter(True)` is rejected. `bool` is a subclass of `int`, but a capacity of `True` is almost always a caller mistake.
 - **Very low error rates.** A low `error_rate` relative to `capacity` produces a large number of hash functions. This works but each `add` and `__contains__` call runs proportionally more MD5 invocations.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
