@@ -1,6 +1,6 @@
 [project]
 name = "bloom-filter"
-version = "0.1.0"
+version = "0.1.1"
 description = "A space-efficient set membership test with a tunable false positive rate."
 requires-python = ">=3.10"
 dependencies = []
